@@ -1,5 +1,5 @@
 # sampling-models
-Computational models for understanding sampling issues in studeies of dyadic relationships.
+Computational models for understanding sampling issues in studies of dyadic relationships.
 
 "Marriage_Market_Oct_21_short relations" is a non-spatial, agent-based model of the formation of romantic dyads.  It was developed using the Numerus software (https://www.numerusinc.com/) by Nancy Darling and Ian Burns.  Numerus was developed by Richard Salter. 
 
