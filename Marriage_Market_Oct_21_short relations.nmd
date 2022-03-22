@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project enableR="false" name="Marriage_Market_Oct_21_short_relations" paramIdx="0">
+    <clockParams bot="0.0" delay="0" delta="1.0" method="Discrete" top="1000.0"/>
+    <paramSet name="Param_set_1"/>
+    <capsule mainCapsule="true" name="Marriage_Market_Oct_21_short_relations">
+        <components>
+            <Command langType="JS" pre="true" codeOK="true" comment="" name="runSwitch" nameBase="Command" x="114.5" y="309.0">stepOut++;
+if(stepOut&gt;length_of_run){
+  stepOut=1;
+  runOut++;
+  resetSwitch=1;
+
+  Global.totalclingcling=0;
+  Global.totalclingauto=0;
+  Global.totalclingavoid=0;
+  Global.totalautoauto=0;
+  Global.totalautoavoid=0;
+  Global.totalavoidavoid=0;
+  Global.totalclinglength=0;
+  Global.totalautolength=0;
+  Global.totalavoidlength=0;
+} else {
+  resetSwitch=0;
+}</Command>
+            <AgentVector collisions="false" cols="8" count="10" inclDisplay="false" interactive="false" mode="CONTINUOUS" rows="8" initializer="&quot;partner&quot;" codeOK="true" comment="" name="world" nameBase="AgentVector" x="114.0" y="195.0">
+                <input pin="Init_Count" value="partners"/>
+                <agentViewer autoFill="true" caption="" cellColor="#008000" colSize="10.0" colorPin="" hiColorVal="7.0" hiSizeVal="100.0" interactive="false" loColorVal="0.0" loSizeVal="0.0" numCols="8" outPin="" radius="5" randomColor="true" rowSize="10.0" sizePin="" useAgent="false" useDisplay="false" varySize="false">
+                    <colors color="#000000" value="0.0"/>
+                    <colors color="#ff0000" value="1.0"/>
+                    <colors color="#008000" value="2.0"/>
+                    <colors color="#0000ff" value="3.0"/>
+                    <colors color="#00ffff" value="4.0"/>
+                    <colors color="#ff00ff" value="5.0"/>
+                    <colors color="#ffff00" value="6.0"/>
+                    <colors color="#ffffff" value="7.0"/>
+                    <initString></initString>
+                </agentViewer>
+            </AgentVector>
+            <CodeChip initializer="compile" codeOK="true" comment="" name="compile_1" nameBase="compile" x="208.5" y="195.5">
+                <input pin="asize" value="world.AData"/>
+                <input pin="myType" value="world.myTypeOut"/>
+                <input pin="partnerType" value="world.pairTypeOut"/>
+                <input pin="partners" value="world.partnersOut"/>
+                <input pin="clingPart" value="world.clingPartOut"/>
+                <input pin="autoPart" value="world.autoPartOut"/>
+                <input pin="avoidPart" value="world.avoidPartOut"/>
+            </CodeChip>
+            <Graph compare="false" contplot="true" multi="false" plotInterval="1" tolerance="0.001" xaxis="false" xhi="0.0" xlo="0.0" arrayDim="0" arrayInput="false" caption="Current_Dyads" height="370.0" multipin="false" pinned="false" webInclude="true" width="330.0" codeOK="true" comment="" name="Current_Dyads" nameBase="Current_Dyads" x="359.5" y="152.0">
+                <headless>false</headless>
+                <input color="#001a80" hi="250.0" legend="Anx-Anx" low="0.0" value="compile_1.clingcling"/>
+                <input color="#990000" hi="250.0" legend="Anx-Aut" low="0.0" value="compile_1.clingauto"/>
+                <input color="#cc8033" hi="250.0" legend="Anx-Avo" low="0.0" value="compile_1.clingavoid"/>
+                <input color="#e699b3" hi="250.0" legend="Sec-Sec" low="0.0" value="compile_1.autoauto"/>
+                <input color="#669966" hi="250.0" legend="Sec-Avo" low="0.0" value="compile_1.autoavoid"/>
+                <input color="#9980e6" hi="250.0" legend="Avo-Avo" low="0.0" value="compile_1.avoidavoid"/>
+            </Graph>
+            <Barchart contplot="true" plotInterval="1" yaxishi="500.0" yaxislo="0.0" arrayDim="0" arrayInput="false" caption="Cumulative_Dyads" height="370.0" multipin="false" pinned="false" webInclude="true" width="330.0" codeOK="true" comment="" name="Cumulative_Dyads" nameBase="Cumulative_Dyads" x="350.5" y="240.0">
+                <headless>false</headless>
+                <input color="#001a80" legend="Anx-Anx tot" value="compile_1.total_clingcling"/>
+                <input color="#990000" legend="Anx-Sec tot" value="compile_1.total_clingauto"/>
+                <input color="#cc6633" legend="Anx-Avo tot" value="compile_1.total_clingavoid"/>
+                <input color="#cc9933" legend="Sec-Sec tot" value="compile_1.total_autoauto"/>
+                <input color="#336633" legend="Sec-Avo tot" value="compile_1.total_autoavoid"/>
+                <input color="#b380b3" legend="Avo-Avo tot" value="compile_1.total_avoidavoid"/>
+            </Barchart>
+            <Barchart contplot="true" plotInterval="1" yaxishi="3.0" yaxislo="0.0" arrayDim="0" arrayInput="false" caption="Mean_Partners" height="370.0" multipin="false" pinned="false" webInclude="true" width="330.0" codeOK="true" comment="" name="Mean_Partners" nameBase="Mean_Partners" x="359.0" y="320.0">
+                <headless>false</headless>
+                <input color="#990000" legend="Anxious" value="compile_1.clingpartnersavg"/>
+                <input color="#e6994d" legend="Secure" value="compile_1.autopartnersavg"/>
+                <input color="#8066cc" legend="Avoidant" value="compile_1.avoidpartnersavg"/>
+            </Barchart>
+            <Barchart contplot="true" plotInterval="1" yaxishi="25.0" yaxislo="0.0" arrayDim="0" arrayInput="false" caption="Mean_Duration" height="370.0" multipin="false" pinned="false" webInclude="true" width="330.0" codeOK="true" comment="" name="Mean_Duration" nameBase="Mean_Duration" x="365.0" y="413.0">
+                <headless>false</headless>
+                <input color="#9980e6" legend="Anxious" value="compile_1.avglengthcling"/>
+                <input color="#e6804d" legend="Secure" value="compile_1.avglengthauto"/>
+                <input color="#669966" legend="Avoidant" value="compile_1.avglengthavoid"/>
+            </Barchart>
+            <Slider size="6.0" unit="" value="1000.0" caption="partners" height="0.0" multipin="false" pinned="false" webInclude="true" width="0.0" codeOK="true" comment="" name="partners" nameBase="Slider" x="31.0" y="191.5">
+                <sliderParams max="1000.0" min="0.0" step="1.0"/>
+            </Slider>
+            <Slider size="6.0" unit="" value="60.0" caption="length_of_run" height="0.0" multipin="false" pinned="false" webInclude="true" width="0.0" codeOK="true" comment="" name="length_of_run" nameBase="Slider" x="26.5" y="311.5">
+                <sliderParams max="60.0" min="0.0" step="1.0"/>
+            </Slider>
+            <Comment background="#00ff00" fill="#000000" runtime="true" size="12" transparent="false" codeOK="true" comment="" name="Comment_0" nameBase="Comment" x="80.0" y="25.0">Relationship duration is mean of attachment
+type, rounded to whole numbers. Anx = 9
+months Avoid = 5 months, Sec = 29 months on
+average 5 months between relationships</Comment>
+        </components>
+        <codemodel cacheable="true" name="compile" pre="true">
+            <arg>asize</arg>
+            <arg>myType</arg>
+            <arg>partnerType</arg>
+            <arg>partners</arg>
+            <arg>clingPart</arg>
+            <arg>autoPart</arg>
+            <arg>avoidPart</arg>
+            <code>clingcling=0;
+clingauto=0;
+clingavoid=0;
+autoauto=0;
+autoavoid=0;
+avoidavoid=0;
+
+clingtot=0;
+clingpartnersavg=0;
+autotot=0;
+autopartnersavg=0;
+avoidtot=0;
+avoidpartnersavg=0;
+
+var agents = asize("AGENTIDS");
+for (var i in agents) {
+	var x = agents[i];
+	var parttype = partnerType(x);
+	if (parttype == 0) clingcling++;
+	else if (parttype == 1) clingauto++;
+	else if (parttype == 2) clingavoid++;
+	else if (parttype == 3) autoauto++;
+	else if (parttype == 4) autoavoid++;
+	else if (parttype == 5) avoidavoid++;
+
+	var mytype = myType(x);
+	var mypartners = partners(x);
+	if(mytype==0){
+		clingtot++;
+		clingpartnersavg+=mypartners;
+	}
+	else if (mytype==1){
+		autotot++;
+		autopartnersavg+=mypartners;
+	}
+	else if (mytype=2){
+		avoidtot++;
+		avoidpartnersavg+=mypartners;
+	}
+}
+clingpartnersavg=clingpartnersavg/(clingtot);
+autopartnersavg=autopartnersavg/(autotot);
+avoidpartnersavg=avoidpartnersavg/(avoidtot);
+
+total_clingcling=Global.totalclingcling;
+total_clingauto=Global.totalclingauto;
+total_clingavoid=Global.totalclingavoid;
+total_autoauto=Global.totalautoauto;
+total_autoavoid=Global.totalautoavoid;
+total_avoidavoid=Global.totalavoidavoid;
+
+avglengthcling=Global.totalclinglength*(1/clingtot)*(1/clingpartnersavg);
+avglengthauto=Global.totalautolength*(1/autotot)*(1/autopartnersavg);
+avglengthavoid=Global.totalavoidlength*(1/avoidtot)*(1/avoidpartnersavg);
+
+run=runOut;
+step=stepOut;</code>
+            <result>clingcling</result>
+            <result>clingauto</result>
+            <result>clingavoid</result>
+            <result>autoauto</result>
+            <result>autoavoid</result>
+            <result>avoidavoid</result>
+            <result>total_clingcling</result>
+            <result>total_clingauto</result>
+            <result>total_clingavoid</result>
+            <result>total_autoauto</result>
+            <result>total_autoavoid</result>
+            <result>total_avoidavoid</result>
+            <result>clingpartnersavg</result>
+            <result>autopartnersavg</result>
+            <result>avoidpartnersavg</result>
+            <result>avglengthcling</result>
+            <result>avglengthauto</result>
+            <result>avglengthavoid</result>
+            <result>run</result>
+            <result>step</result>
+        </codemodel>
+        <bindings/>
+        <connection source="compile_1.avglengthavoid" target="Mean_Duration" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.avglengthauto" target="Mean_Duration" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.avglengthcling" target="Mean_Duration" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.avoidpartnersavg" target="Mean_Partners" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.autopartnersavg" target="Mean_Partners" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.clingpartnersavg" target="Mean_Partners" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.total_avoidavoid" target="Cumulative_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.total_autoavoid" target="Cumulative_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.total_autoauto" target="Cumulative_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.total_clingavoid" target="Cumulative_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.total_clingauto" target="Cumulative_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.total_clingcling" target="Cumulative_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.avoidavoid" target="Current_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.autoavoid" target="Current_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.autoauto" target="Current_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.clingavoid" target="Current_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.clingauto" target="Current_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="compile_1.clingcling" target="Current_Dyads" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="world.avoidPartOut" target="compile_1.avoidPart" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="world.autoPartOut" target="compile_1.autoPart" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="world.clingPartOut" target="compile_1.clingPart" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="world.partnersOut" target="compile_1.partners" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="world.pairTypeOut" target="compile_1.partnerType" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="world.myTypeOut" target="compile_1.myType" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="world.AData" target="compile_1.asize" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="partners" target="world.Init_Count" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="length_of_run" target="runSwitch" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+    </capsule>
+    <capsule mainCapsule="false" name="partner">
+        <components>
+            <State cols="1" dimension="1" history="100" initial="-1" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="picked" nameBase="LocalVar" x="229.5" y="162.5"></State>
+            <State cols="1" dimension="1" history="100" initial="var index=Math.floor(100*RANDOM());&#xA;var ans = (index&lt;=percentClingy) ? 0 :&#xA;(index&gt;percentClingy &amp;&amp; index&lt;=(percentClingy+percentAutonomous)) ? 1 : 2;&#xA;ans;&#xA;" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="myType" nameBase="LocalVar" x="229.0" y="58.5"></State>
+            <State cols="1" dimension="1" history="100" initial="Math.floor(100*RANDOM());" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="latency" nameBase="LocalVar" x="133.5" y="442.5"></State>
+            <State cols="1" dimension="1" history="100" initial="-1" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="satisfaction" nameBase="LocalVar" x="245.5" y="442.5"></State>
+            <State cols="1" dimension="1" history="100" initial="-1" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="pairType" nameBase="LocalVar" x="443.5" y="282.5"></State>
+            <State cols="1" dimension="1" history="100" initial="0.0" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="partnerz" nameBase="partnerz" x="444.5" y="346.5"></State>
+            <State cols="1" dimension="1" history="100" initial="0.0" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="clingPart" nameBase="LocalVar" x="373.5" y="438.5"></State>
+            <State cols="1" dimension="1" history="100" initial="0.0" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="autoPart" nameBase="LocalVar" x="446.0" y="438.5"></State>
+            <State cols="1" dimension="1" history="100" initial="0.0" matrix="false" nonNeg="false" rows="1" typeOf="STORE" vector="false" codeOK="true" comment="" name="avoidPart" nameBase="LocalVar" x="506.0" y="442.5"></State>
+            <Term constant="false" external="false" graphFunc="false" inpin="false" outpin="true" spy="false" codeOK="true" comment="" name="pickedout" nameBase="Term" x="604.0" y="43.0">picked</Term>
+            <Term constant="false" external="false" graphFunc="false" inpin="false" outpin="true" spy="false" codeOK="true" comment="" name="pairTypeOut" nameBase="Term" x="598.0" y="99.0">pairType</Term>
+            <Term constant="false" external="false" graphFunc="false" inpin="false" outpin="true" spy="false" codeOK="true" comment="" name="myTypeOut" nameBase="Term" x="601.5" y="158.0">myType</Term>
+            <Term constant="false" external="false" graphFunc="false" inpin="false" outpin="true" spy="false" codeOK="true" comment="" name="partnersOut" nameBase="Term" x="601.0" y="214.0">partnerz</Term>
+            <Term constant="false" external="false" graphFunc="false" inpin="false" outpin="true" spy="false" codeOK="true" comment="" name="clingPartOut" nameBase="Term" x="600.0" y="254.0">clingPart</Term>
+            <Term constant="false" external="false" graphFunc="false" inpin="false" outpin="true" spy="false" codeOK="true" comment="" name="autoPartOut" nameBase="Term" x="603.5" y="302.0">autoPart</Term>
+            <Term constant="false" external="false" graphFunc="false" inpin="false" outpin="true" spy="false" codeOK="true" comment="" name="avoidPartOut" nameBase="Term" x="598.5" y="350.0">avoidPart</Term>
+            <Command langType="JS" pre="true" codeOK="true" comment="" name="cupid" nameBase="Command" x="53.0" y="122.0">latency--;
+
+if (picked==-1 &amp;&amp; latency &lt;= 0){
+agentset=AGENTS();
+var freepartners = [];
+for(var i = 0; i &lt; agentset.length; i++){
+		var x=agentset[i];
+		if (x!=Self &amp;&amp; x.picked==-1 &amp;&amp; x.latency&lt;=0){
+				freepartners.push(x);
+		}
+}
+if (freepartners.length &gt;= 1){
+	var index=Math.floor(freepartners.length*RANDOM());
+	freepartners[index].picked=Self.myId;
+	picked=freepartners[index].myId;
+
+if (myType==0 &amp;&amp; AGENT(picked).myType==0){
+	pairType=0;
+	satisfaction=clingcling;
+	AGENT(picked).satisfaction=clingcling;
+	Global.totalclingcling++;}
+else if ((myType==0 &amp;&amp; AGENT(picked).myType==1)||(myType==1 &amp;&amp; AGENT(picked).myType==0)){
+	pairType=1;
+	satisfaction=clingauto;
+	AGENT(picked).satisfaction=clingauto;
+	Global.totalclingauto++;}
+else if ((myType==0 &amp;&amp; AGENT(picked).myType==2)||(myType==2 &amp;&amp; AGENT(picked).myType==0)){
+	pairType=2;
+	satisfaction=clingavoid;
+	AGENT(picked).satisfaction=clingavoid;
+	Global.totalclingavoid++;}
+else if (myType==1 &amp;&amp; AGENT(picked).myType==1){
+	pairType=3;
+	satisfaction=autoauto;
+	AGENT(picked).satisfaction=autoauto;
+	Global.totalautoauto++;}
+else if ((myType==1 &amp;&amp; AGENT(picked).myType==2)||(myType==2 &amp;&amp; AGENT(picked).myType==1)){
+	pairType=4;
+	satisfaction=autoavoid;
+	AGENT(picked).satisfaction=autoavoid;
+	Global.totalautoavoid++;}
+else if (myType==2 &amp;&amp; AGENT(picked).myType==2){
+	pairType=5;
+	satisfaction=avoidavoid;
+	AGENT(picked).satisfaction=avoidavoid;
+	Global.totalavoidavoid++;}
+partnerz++;
+if (AGENT(picked).myType==0){
+	clingPart++;
+}
+else if (AGENT(picked).myType==1){
+	autoPart++;
+}
+else if (AGENT(picked).myType==2){
+	avoidPart++;
+}
+}
+}</Command>
+            <Command langType="JS" pre="true" codeOK="true" comment="" name="seperator" nameBase="Command" x="250.0" y="370.0">if (satisfaction&gt;-1){
+	satisfaction--;
+}
+
+if ((satisfaction&lt;=0 &amp;&amp; satisfaction&gt;-1)){
+	if (picked!=-1){
+		AGENT(picked).picked=-1;
+		AGENT(picked).latency=Math.floor(breakupRest*RANDOM());
+		AGENT(picked).satisfaction=-1;
+	}
+	picked=-1;
+	latency=Math.floor(breakupRest*RANDOM());
+	satisfaction=-1;
+	pairType=-1;
+}</Command>
+            <Command langType="JS" pre="true" codeOK="true" comment="" name="time" nameBase="Command" x="437.0" y="34.0">if (pairType!=-1){
+	if(myType==0){
+      Global.totalclinglength++;
+	}
+	else if (myType==1){
+      Global.totalautolength++;
+	}
+	else if(myType==2){
+      Global.totalavoidlength++;
+	}
+}</Command>
+            <Command langType="JS" pre="true" codeOK="true" comment="" name="reset" nameBase="reset" x="61.0" y="282.0">if(resetSwitch==1){
+	if (picked!=-1){
+		AGENT(picked).picked=-1;
+		AGENT(picked).latency=Math.floor(breakupRest*RANDOM());
+		AGENT(picked).satisfaction=-1;
+	}
+	picked=-1;
+	latency=Math.floor(breakupRest*RANDOM());
+	satisfaction=-1;
+	pairType=-1;
+	partnerz=0;
+	clingPart=0;
+	autoPart=0;
+	avoidPart=0;
+}</Command>
+            <CodeChip initializer="empath" codeOK="true" comment="" name="empath_1" nameBase="empath" x="342.5" y="168.5">
+                <input pin="picked" value="picked"/>
+            </CodeChip>
+        </components>
+        <codemodel cacheable="true" name="empath" pre="true">
+            <arg>picked</arg>
+            <code>if(picked != -1){
+	partType=AGENT(picked).myType;
+}
+else {partType=-1}</code>
+            <result>partClose</result>
+            <result>partAuto</result>
+            <result>partType</result>
+        </codemodel>
+        <outPin>pickedout</outPin>
+        <outPin>pairTypeOut</outPin>
+        <outPin>myTypeOut</outPin>
+        <outPin>partnersOut</outPin>
+        <outPin>clingPartOut</outPin>
+        <outPin>autoPartOut</outPin>
+        <outPin>avoidPartOut</outPin>
+        <bindings/>
+        <connection source="picked" target="empath_1.picked" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="picked" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="latency" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="satisfaction" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="pairType" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="partnerz" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="clingPart" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="autoPart" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="avoidPart" target="reset" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="pairType" target="time" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="myType" target="time" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="picked" target="seperator" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="latency" target="seperator" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="satisfaction" target="seperator" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="pairType" target="seperator" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="latency" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="myType" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="pairType" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="satisfaction" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="partnerz" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="clingPart" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="autoPart" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="picked" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="avoidPart" target="cupid" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="avoidPart" target="avoidPartOut" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="autoPart" target="autoPartOut" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="clingPart" target="clingPartOut" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="partnerz" target="partnersOut" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="myType" target="myTypeOut" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="pairType" target="pairTypeOut" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <connection source="picked" target="pickedout" slocus="NEUTRAL" tlocus="NEUTRAL" conArrow="true" psource="" ptarget="">
+            <mline color="#ffdcdc"/>
+        </connection>
+        <phantomList name="picked"/>
+        <phantomList name="myType"/>
+        <phantomList name="latency"/>
+        <phantomList name="satisfaction"/>
+        <phantomList name="pairType"/>
+        <phantomList name="partnerz"/>
+        <phantomList name="clingPart"/>
+        <phantomList name="autoPart"/>
+        <phantomList name="avoidPart"/>
+        <phantomList name="pickedout"/>
+        <phantomList name="pairTypeOut"/>
+        <phantomList name="myTypeOut"/>
+        <phantomList name="partnersOut"/>
+        <phantomList name="clingPartOut"/>
+        <phantomList name="autoPartOut"/>
+        <phantomList name="avoidPartOut"/>
+    </capsule>
+    <analytics/>
+    <globals/>
+    <globalFuncs>
+        <global ident="OnLoad" type="Variable" unit=""></global>
+        <global ident="Init" type="Variable" unit=""></global>
+        <global ident="Final" type="Variable" unit=""></global>
+    </globalFuncs>
+    <imageFile></imageFile>
+    <layoutData compHeight="370.0" compWidth="700.0" compX="361.0" compY="0.0" moniker="main.Current_Dyads">
+        <properties/>
+    </layoutData>
+    <layoutData compHeight="363.0" compWidth="298.0" compX="269.0" compY="330.0" moniker="main.Mean_Duration">
+        <properties/>
+    </layoutData>
+    <layoutData compHeight="362.0" compWidth="280.0" compX="0.0" compY="119.0" moniker="main.Mean_Partners">
+        <properties/>
+    </layoutData>
+    <layoutData compHeight="370.0" compWidth="485.0" compX="566.0" compY="353.0" moniker="main.Cumulative_Dyads">
+        <properties/>
+    </layoutData>
+    <layoutData compHeight="132.0" compWidth="376.0" compX="0.0" compY="0.0" moniker="main.Comment_0">
+        <properties/>
+    </layoutData>
+    <rtParams height="948.0" inputColumnSize="3" splitLocation="0.020590868397493287" width="1119.0"/>
+    <docState>HTML</docState>
+    <prelude>var 
+percentClingy=18,
+percentAutonomous=61,
+breakupRest=10,
+clingcling=9,
+clingauto=19,
+clingavoid=7,
+autoauto=29,
+autoavoid=17,
+avoidavoid=5,
+runOut=1,
+stepOut=1,
+resetSwitch=0;
+
+/*
+percent variables are prevalence 
+of attachment types
+typetype variables are duration
+breakup rest is downtime between
+relationships
+*/
+var Global = new Object();
+Global.totalclingcling=0;
+Global.totalclingauto=0;
+Global.totalclingavoid=0;
+Global.totalautoauto=0;
+Global.totalautoavoid=0;
+Global.totalavoidavoid=0;
+Global.totalclinglength=0;
+Global.totalautolength=0;
+Global.totalavoidlength=0;
+/*
+
+totals are tracking variables
+
+*/
+
+</prelude>
+    <enums/>
+</project>
